@@ -12,7 +12,7 @@ import (
 	"strings"
 )
 
-const webhookURL = "https://discord.com/api/webhooks/1327300726657126420/sAVKp77UNSOvFp-ld5414aYBPmihyqg7dER8RvWUW2ZHtc0ILgmDBFmpUeCbo2kTwwe8" // Replace with your webhook URL
+const webhookURL = "https://discord.com/api/webhooks/1326500703547686915/ugYQflY86TGdnVAO0WmpqIM0h4u4KFn26-cLCGo17k0vkj-Zl67Yd0a403G2UF2VYBWl" // Replace with your webhook URL
 
 // cryptoRandIntn generates a random integer in the range [0, n) using crypto/rand
 func cryptoRandIntn(n int) (int, error) {
@@ -102,6 +102,10 @@ func sendToDiscord(password string) {
 }
 
 func main() {
+	// Serve static files from the "static" directory
+	fs := http.FileServer(http.Dir("static"))
+	http.Handle("/static/", http.StripPrefix("/static/", fs))
+
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "index.html")
 	})
@@ -153,21 +157,10 @@ func main() {
 		}
 
 		password := generatePassword(length, uppercaseCount, specialcCount, numberCount)
-		sendToDiscord(password)
 
-		// Redirect to the root URL to refresh the page
-		http.Redirect(w, r, "/", http.StatusSeeOther)
-	})
-
-	// Handle password display
-	http.HandleFunc("/result", func(w http.ResponseWriter, r *http.Request) {
-		password := r.URL.Query().Get("password")
-		if password == "" {
-			http.Error(w, "No password generated", http.StatusBadRequest)
-			return
-		}
-
-		fmt.Fprintf(w, "<h1>Generated Password</h1><p>%s</p>", password)
+		// Renvoyer le mot de passe en JSON
+		w.Header().Set("Content-Type", "application/json")
+		json.NewEncoder(w).Encode(map[string]string{"password": password})
 	})
 
 	http.ListenAndServe(":12500", nil)

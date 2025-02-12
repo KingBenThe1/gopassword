@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/style.css" rel="stylesheet">
+    <title>Password Generator</title>
+</head>
+<body>
+    <div class="container">
+        <header class="text-center my-4">
+            <h1>Password Generator</h1>
+        </header>
+        <main>
+            <form id="passwordForm" class="mb-4">
+                <div class="form-group">
+                    <label for="length">Password Length:</label>
+                    <input type="number" class="form-control" id="length" name="length" placeholder="Enter password length" required>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="uppercaseCheckbox" name="uppercaseCheckbox">
+                    <label class="form-check-label" for="uppercaseCheckbox">Include Uppercase</label>
+                </div>
+                <div class="form-group">
+                    <label for="uppercaseCount">Number of Uppercase:</label>
+                    <input type="number" class="form-control" id="uppercaseCount" name="uppercaseCount" placeholder="Number of uppercase">
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="specialcCheckbox" name="specialcCheckbox">
+                    <label class="form-check-label" for="specialcCheckbox">Include Special Characters</label>
+                </div>
+                <div class="form-group">
+                    <label for="specialcCount">Number of Special Characters:</label>
+                    <input type="number" class="form-control" id="specialcCount" name="specialcCount" placeholder="Number of special characters">
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="numberCheckbox" name="numberCheckbox">
+                    <label class="form-check-label" for="numberCheckbox">Include Numbers</label>
+                </div>
+                <div class="form-group">
+                    <label for="numberCount">Number of Numbers:</label>
+                    <input type="number" class="form-control" id="numberCount" name="numberCount" placeholder="Number of numbers">
+                </div>
+                <button type="submit" class="btn btn-primary">Generate Password</button>
+            </form>
+            <div id="result" class="text-center" style="display:none;">
+                <h2>Generated Password</h2>
+                <p id="generatedPassword" class="font-weight-bold"></p>
+                <button class="btn btn-secondary" onclick="copyToClipboard()">Copy to Clipboard</button>
+            </div>
+        </main>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/static/script.js"></script>
+</body>
+</html>

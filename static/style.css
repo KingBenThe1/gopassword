@@ -14,9 +14,13 @@ div[title="length"] {
 div[title="upper"]{
     padding : 20px;
     text-align: center;
-
 }
+
 div[title="specialc"]{
+    padding : 20px;
+    text-align: center;
+}
+div[title="number"]{
     padding : 20px;
     text-align: center;
 }
@@ -25,4 +29,19 @@ div[title="submit"]{
     padding: 20px;
     color: blue;
     margin: 10px;
+}
+
+#result {
+    text-align: center;      /* Centre le contenu à l'intérieur du div */
+    padding: 20px;
+    background-color: #f9f9f9; /* Fond gris clair */
+    border: 1px solid #ccc;    /* Bordure grise */
+    border-radius: 8px;        /* Bords arrondis */
+    margin-top: 20px;
+}
+
+#generatedPassword {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 10px;
 }
